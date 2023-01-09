@@ -12,6 +12,10 @@ class ConvNet(nn.Module):
         self.fc3 = nn.Linear(84, 10)
 
     def forward(self, x):
+        if x.ndim != 4:
+            raise ValueError('Expected input to a 4D tensor')
+        if x.shape[1] != 1 or x.shape[2] != 28 or x.shape[3] != 28:
+            raise ValueError('Expected each sample to have shape [1, 28, 28]')
         # -> n, 3, 32, 32
         x = self.pool(F.relu(self.conv1(x)))  # -> n, 16, 12, 12
         x = self.pool(F.relu(self.conv2(x)))  # -> n, 32, 5, 5
