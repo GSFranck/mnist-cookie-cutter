@@ -8,7 +8,7 @@ import os.path
 import pytest
 
 
-dataset = _PATH_DATA+'/processed/'
+dataset = _PATH_DATA+'/processed'
 images = torch.unsqueeze( torch.load(f'{dataset}/train_images.pt'), dim=1)
 labels = torch.load(f'{dataset}/train_labels.pt')
 train = TensorDataset(images,labels)
