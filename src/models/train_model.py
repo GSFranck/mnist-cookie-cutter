@@ -4,7 +4,7 @@ from torch.utils.data import TensorDataset, DataLoader
 import click
 import matplotlib.pyplot as plt
 from model import ConvNet
-
+  
 
 
 
@@ -13,7 +13,7 @@ def cli():
     pass
 
 # Datapath
-main_path = '../../data/processed'
+main_path = 'data/processed'
 
 @click.command()
 @click.option("--lr", default=1e-3, help='learning rate to use for training')
@@ -53,11 +53,11 @@ def train(lr, epochs):
         print(f'Epoch [{epoch+1}/{epochs}], Loss: {epoch_loss:.4f}')
         losses.append(epoch_loss)
 
-    torch.save(model.state_dict(), '../../models/cnn_checkpoint.pth')
+    torch.save(model.state_dict(), 'models/cnn_checkpoint.pth')
 
     plt.figure()
     plt.plot([i+1 for i in range(epochs)],losses); plt.xlabel('Epoch'); plt.ylabel('Loss')
-    plt.savefig('../../reports/figures/convergence.png',dpi=200)
+    plt.savefig('reports/figures/convergence.png',dpi=200)
 
 
 cli.add_command(train)
